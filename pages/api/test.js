@@ -1,5 +1,5 @@
 const SnappyJS = require("snappyjs");
-import fetch from "node-fetch";
+const fetch = require("node-fetch");
 const protobuf = require("protobufjs");
 
 const logger = console;
@@ -18,7 +18,7 @@ const kv = (o) =>
 
 export default async function handler(req, res) {
     const start1 = Date.now()
-    const root = await protobuf.load("prom.proto");
+    const root = await protobuf.load(process.cwd() + "/prom.proto");
   var WriteRequest = root.lookupType("prometheus.WriteRequest");
   var payload = {
     timeseries: [
